@@ -1,3 +1,5 @@
+if [ -e ~/.vimrc ]
+then
 DIFF=$(diff -U 3 .vimrc ~/.vimrc)
 if [ "$DIFF" != "" ]
 then
@@ -7,6 +9,13 @@ then
 	echo ".vimrc updated"
 else
 	echo ".vimrc is up-to-date"
+fi
+else
+    echo ".vimrc file not here"
+    echo "Copying .vimrc file"
+    cp .vimrc ~/
+    cp -r .vim_* ~/
+    echo ".vimrc file copied"
 fi
 
 DIFF=$(diff -U 3 .zshrc ~/.zshrc)
@@ -20,13 +29,5 @@ else
 	echo ".zshrc is up-to-date"
 fi
 
-DIFF=$(diff -U 3 .oh-my-zsh ~/.oh-my-zsh)
-if [ "$DIFF" == "*No such file or directory" ]
-then
-	echo "updating .oh-my-zsh"
-	cp -r .oh-my-zsh ~/
-	cp -r .oh-my-zsh ~/
-	echo ".oh-my-zsh updated"
-else
-	echo ".oh-my-zsh is up-to-date"
-fi
+#cp /Volumes/APRICITY/settings/.zshrc ~/goinfre/kmodipa/
+#cp -r /Volumes/APRICITY/settings/.oh-my-zsh ~/
