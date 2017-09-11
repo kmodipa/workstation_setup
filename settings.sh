@@ -18,6 +18,8 @@ else
     echo ".vimrc file copied"
 fi
 
+if [-e ~/.zshrc ]
+then
 DIFF=$(diff -U 3 .zshrc ~/.zshrc)
 if [ "$DIFF" != "" ]
 then
@@ -27,6 +29,13 @@ then
 	echo ".zshrc updated"
 else
 	echo ".zshrc is up-to-date"
+fi
+else
+    echo ".zshrc is not here"
+    echo "Copying .zshrc file"
+    cp .zshrc ~/
+    cp -r .oh-my-zsh ~/
+    echo ".zshrc file copied"
 fi
 
 #cp /Volumes/APRICITY/settings/.zshrc ~/goinfre/kmodipa/
